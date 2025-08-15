@@ -1,9 +1,10 @@
+
 <!doctype html>
 <html lang="th">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ทริปญี่ปุ่นหน้าหนาว – 6–15 ธ.ค.</title>
+  <title>ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว – 3–15 ธ.ค.</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +37,8 @@
     <div class="container py-3">
       <div class="d-flex align-items-center justify-content-between">
         <div>
-          <h1 class="h4 mb-0 fw-bold">ทริปญี่ปุ่นหน้าหนาว</h1>
-          <div class="small opacity-75">6 – 15 ธ.ค. • โตเกียว ฮาโกเนะ คาวากุจิโกะ คามาคุระ</div>
+          <h1 class="h4 mb-0 fw-bold">ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว</h1>
+          <div class="small opacity-75">3 – 15 ธ.ค. • โตเกียว ฮาโกเนะ คาวากุจิโกะ คามาคุระ</div>
         </div>
         <a href="#tips" class="btn btn-light btn-sm">ทิปส์</a>
       </div>
@@ -98,7 +99,18 @@
               </ul>
             </div>
           </div>
-          <div class="offline-tip p-3 mt-2 small">
+          
+<div class="row g-3 mt-2">
+  <div class="col-12">
+    <div class="section-title">ทิปส์ฮ่องกง (เพิ่ม)</div>
+    <ul class="small ps-3">
+      <li>จ่ายสะดวกด้วย <strong>Octopus</strong> (เพิ่มลงมือถือได้) และใช้ <strong>MTR Mobile</strong> เช็คเส้นทาง</li>
+      <li>ฉุกเฉินฮ่องกง: โทร <strong>999</strong></li>
+      <li>ปลั๊กไฟ Type G (เหมือนสหราชอาณาจักร) — อะแดปเตอร์เผื่อไว้</li>
+    </ul>
+  </div>
+</div>
+<div class="offline-tip p-3 mt-2 small">
             <i class="fa-solid fa-wifi me-2"></i>ทิปส์: เพิ่มหน้านี้ไว้ที่หน้าจอหลัก (Share → Add to Home Screen) เพื่อเข้าใช้งานเร็ว ๆ ได้แม้อินเทอร์เน็ตอ่อน
           </div>
         </div>
@@ -118,6 +130,48 @@
 
     // ข้อมูลทริป (แปลไทยครบถ้วน) — ปรับโรงแรมวันที่ 11 ธ.ค. เป็น LANDABOUT TOKYO เรียบร้อย
     const trip = [
+
+{
+  date: 'พ., 3 ธ.ค.', city:'ฮ่องกง (วันเดินทางถึง)', hotel:{
+    name:'Dorsett Mongkok', maps:g('Dorsett Mongkok')
+  }, temp:'17°–22°C', keyNotes:[
+    'บิน 11:40 → 15:30 กรุงเทพฯ (BKK) → ฮ่องกง (HKG)',
+    'เช็คอิน Dorsett Mongkok',
+    'เน้นพักผ่อน เดินสวนสาธารณะ และกิน'
+  ], schedule:[
+    {time:'08:45', title:'ออกจากบ้าน → สนามบิน', detail:'เผื่อเวลา 2–3 ชม. ก่อนเครื่องออก'},
+    {time:'11:40', title:'บิน BKK → HKG', detail:'ถึงฮ่องกง 15:30 โดยประมาณ'},
+    {time:'15:30', title:'ถึงฮ่องกง', detail:'ตรวจคนเข้าเมือง + รับกระเป๋า ~45–75 นาที'},
+    {time:'17:00', title:'เช็คอิน', detail:'โรงแรม Dorsett Mongkok', map:g('Dorsett Mongkok')},
+    {time:'19:00', title:'ดินเนอร์ชิล ๆ', detail:'ร้านใกล้โรงแรม / ถนน Nathan'},
+  ]
+},
+{
+  date: 'พฤ., 4 ธ.ค.', city:'ฮ่องกง (พักผ่อน)', hotel:{
+    name:'Dorsett Mongkok', maps:g('Dorsett Mongkok')
+  }, temp:'17°–22°C', keyNotes:[
+    'พักผ่อน เดินสวนสาธารณะ และคาเฟ่',
+    'ไม่มีแพลนแน่น เน้นชิล'
+  ], schedule:[
+    {time:'09:00', title:'Kowloon Park', detail:'เดินเล่นรับลม เช้า ๆ สบาย', map:g('Kowloon Park')},
+    {time:'12:30', title:'ติ่มซำ', detail:'เลือกตามสะดวก (เช่น Tim Ho Wan/Makana)'},
+    {time:'15:00', title:'คาเฟ่/พักผ่อน', detail:'ย่าน Mong Kok / Sham Shui Po'},
+    {time:'18:30', title:'ดินเนอร์สบาย ๆ', detail:'ร้านท้องถิ่นหรือซีฟู้ดแบบบ้าน ๆ'}
+  ]
+},
+{
+  date: 'ศ., 5 ธ.ค.', city:'ฮ่องกง (Free Day)', hotel:{
+    name:'Dorsett Mongkok', maps:g('Dorsett Mongkok')
+  }, temp:'17°–22°C', keyNotes:[
+    'วันอิสระ เลือกร้านอาหาร/สวน/ริมน้ำตามชอบ'
+  ], schedule:[
+    {time:'10:00', title:'Mong Kok / Tsim Sha Tsui', detail:'เดินเล่น/ช้อปเบา ๆ'},
+    {time:'13:00', title:'มื้อกลางวัน', detail:'ตามใจ'},
+    {time:'15:30', title:'Victoria Harbour', detail:'เดินชิล Avenue of Stars', map:g('Avenue of Stars Hong Kong')},
+    {time:'19:00', title:'ดินเนอร์วิวอ่าว', detail:'เลือกตามงบและสะดวก'}
+  ]
+},
+
       {
         date: 'ส., 6 ธ.ค.', city:'โตเกียว (วันเดินทางถึง)', hotel:{
           name:'GLOU Higashi Shinjuku', maps:g('GLOU Higashi Shinjuku')
@@ -126,7 +180,7 @@
           'ซื้อบัตร Suica/PASMO หรือใช้ในมือถือ / รับซิมหรือไวไฟพกพา',
           'เข้าเมือง: Keisei Skyliner → Nippori → JR Yamanote ไป Shinjuku หรือรถบัสสนามบิน'
         ], schedule:[
-          {time:'09:20', title:'ไฟลท์ KHG → NRT', detail:'คาดถึง 14:25 ตรวจคนเข้าเมือง + รับกระเป๋า ~60–90 นาที'},
+          {time:'09:20', title:'ไฟลท์ HKG → NRT', detail:'คาดถึง 14:25 ตรวจคนเข้าเมือง + รับกระเป๋า ~60–90 นาที'},
           {time:'15:30', title:'ทำบัตร IC & เข้าเมือง', detail:'เลือก Skyliner / Keisei / รถบัส ตามความสะดวก'},
           {time:'17:00', title:'เช็คอิน', detail:'โรงแรม GLOU Higashi Shinjuku'},
           {time:'19:00', title:'ดินเนอร์ – Gyukatsu', detail:'แนะนำ “Gyukatsu Ichi Ni San Shinjuku”', map:g('Gyukatsu Ichi Ni San Shinjuku')},
