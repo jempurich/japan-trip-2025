@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว – 3–15 ธ.ค.</title>
+  <title data-i18n-key="title">ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว – 3–15 ธ.ค.</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,18 +29,26 @@
     .hotel-card{background:linear-gradient(180deg, #fff, #f8fafc);border:1px solid #e2e8f0;border-radius:1rem}
     .scroll-area{scroll-margin-top:5.5rem}
     .offline-tip{background:#fffbeb;border:1px dashed #f59e0b;border-radius:.75rem}
+    .lang-toggle .btn{border:0;background:rgba(255,255,255,.2);color:#fff}
+    .lang-toggle .btn.active{background:#fff;color:#0f172a}
   </style>
 </head>
 <body>
   <!-- Header -->
   <header class="sticky-nav brand-bg text-white">
     <div class="container py-3">
-      <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
         <div>
-          <h1 class="h4 mb-0 fw-bold">ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว</h1>
-          <div class="small opacity-75">3 – 15 ธ.ค. • โตเกียว ฮาโกเนะ คาวากุจิโกะ คามาคุระ</div>
+          <h1 class="h4 mb-0 fw-bold" data-i18n-key="header_title">ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว</h1>
+          <div class="small opacity-75" data-i18n-key="header_subtitle">3 – 15 ธ.ค. • โตเกียว ฮาโกเนะ คาวากุจิโกะ คามาคุระ</div>
         </div>
-        <a href="#tips" class="btn btn-light btn-sm">ทิปส์</a>
+        <div class="d-flex align-items-center gap-2">
+          <a href="#tips" class="btn btn-light btn-sm" data-i18n-key="tips_button">ทิปส์</a>
+          <div class="lang-toggle btn-group btn-group-sm" role="group" aria-label="Language switcher">
+            <button class="btn" id="btn-th" onclick="setLang('th')">ไทย</button>
+            <button class="btn" id="btn-en" onclick="setLang('en')">English</button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -52,19 +60,14 @@
         <div class="card-body">
           <div class="row g-3 align-items-center">
             <div class="col-12 col-md-8">
-              <h2 class="h5 mb-2">ภาพรวมทริป</h2>
-              <p class="mb-2">แตะเลือกวันที่เพื่อดูแผนรายชั่วโมง วิธีการเดินทาง ประเภทตั๋ว ค่าโดยสาร แผนที่ และหมายเหตุสำคัญ</p>
+              <h2 class="h5 mb-2" data-i18n-key="overview_title">ภาพรวมทริป</h2>
+              <p class="mb-2" data-i18n-key="overview_desc">แตะเลือกวันที่เพื่อดูแผนรายชั่วโมง วิธีการเดินทาง ประเภทตั๋ว ค่าโดยสาร แผนที่ และหมายเหตุสำคัญ</p>
               <div class="d-flex flex-wrap gap-2" id="dayPills"></div>
             </div>
             <div class="col-12 col-md-4">
               <div class="p-3 hotel-card h-100">
-                <div class="section-title mb-2"><i class="fa-solid fa-train-subway me-2"></i>บัตรโดยสาร & พาสที่ใช้</div>
-                <ul class="mb-0 small ps-3">
-                  <li>ทำ <strong>Suica/PASMO</strong> (ใช้ใน Apple/Google Wallet ได้)</li>
-                  <li>แนะนำ <strong>Hakone Free Pass (2 วัน)</strong> สำหรับ 8–9 ธ.ค.</li>
-                  <li>จองที่นั่ง <strong>Odakyu Romancecar</strong> เส้น Shinjuku ⇄ Hakone‑Yumoto</li>
-                  <li>คาวากุจิโกะ: เลือก <strong>JR + Fujikyu</strong> หรือ <strong>รถบัสด่วน</strong> จาก Shinjuku Expressway Bus Terminal</li>
-                </ul>
+                <div class="section-title mb-2" data-i18n-key="passes_title"><i class="fa-solid fa-train-subway me-2"></i>บัตรโดยสาร & พาสที่ใช้</div>
+                <ul class="mb-0 small ps-3" id="passes_list"></ul>
               </div>
             </div>
           </div>
@@ -79,38 +82,25 @@
     <section class="my-4 scroll-area" id="tips">
       <div class="card day-card">
         <div class="card-body">
-          <h2 class="h5">ทิปส์การเดินทาง & ฉุกเฉิน</h2>
+          <h2 class="h5" data-i18n-key="travel_tips">ทิปส์การเดินทาง & ฉุกเฉิน</h2>
           <div class="row g-3">
             <div class="col-12 col-md-6">
-              <div class="section-title">ของจำเป็น</div>
-              <ul class="small ps-3">
-                <li>พก <strong>เงินสด</strong> สำหรับร้านเล็ก ๆ (สถานีรถไฟรับบัตรส่วนใหญ่)</li>
-                <li>ใช้ <strong>Google Maps</strong> ดูชานชาลาและการเปลี่ยนขบวนแบบเรียลไทม์</li>
-                <li>เปิดใช้ <strong>eSIM/ซิม</strong> และบันทึกแผนที่ออฟไลน์</li>
-                <li>อากาศ 5–13°C ควรมีเสื้อกันหนาว ถุงร้อน และร่ม</li>
-              </ul>
+              <div class="section-title" data-i18n-key="essentials_title">ของจำเป็น</div>
+              <ul class="small ps-3" id="essentials_list"></ul>
             </div>
             <div class="col-12 col-md-6">
-              <div class="section-title">ฉุกเฉิน</div>
-              <ul class="small ps-3">
-                <li>โทร <strong>110</strong> (ตำรวจ), <strong>119</strong> (กู้ชีพ/ดับเพลิง)</li>
-                <li>สถานเอกอัครราชทูตไทย โตเกียว: +81-3-5789-2433</li>
-                <li>ของหายใน JR: ค้นหา "JR East Lost and Found"</li>
-              </ul>
+              <div class="section-title" data-i18n-key="emergency_title">ฉุกเฉิน</div>
+              <ul class="small ps-3" id="emergency_list"></ul>
             </div>
           </div>
           
-<div class="row g-3 mt-2">
-  <div class="col-12">
-    <div class="section-title">ทิปส์ฮ่องกง (เพิ่ม)</div>
-    <ul class="small ps-3">
-      <li>จ่ายสะดวกด้วย <strong>Octopus</strong> (เพิ่มลงมือถือได้) และใช้ <strong>MTR Mobile</strong> เช็คเส้นทาง</li>
-      <li>ฉุกเฉินฮ่องกง: โทร <strong>999</strong></li>
-      <li>ปลั๊กไฟ Type G (เหมือนสหราชอาณาจักร) — อะแดปเตอร์เผื่อไว้</li>
-    </ul>
-  </div>
-</div>
-<div class="offline-tip p-3 mt-2 small">
+          <div class="row g-3 mt-2">
+            <div class="col-12">
+              <div class="section-title" data-i18n-key="hk_tips_title">ทิปส์ฮ่องกง (เพิ่ม)</div>
+              <ul class="small ps-3" id="hk_tips_list"></ul>
+            </div>
+          </div>
+          <div class="offline-tip p-3 mt-2 small" data-i18n-key="offline_tip">
             <i class="fa-solid fa-wifi me-2"></i>ทิปส์: เพิ่มหน้านี้ไว้ที่หน้าจอหลัก (Share → Add to Home Screen) เพื่อเข้าใช้งานเร็ว ๆ ได้แม้อินเทอร์เน็ตอ่อน
           </div>
         </div>
@@ -120,222 +110,444 @@
 
   <!-- Bottom Nav -->
   <nav class="bottom-nav d-flex d-md-none">
-    <a href="#overview"><i class="fa-regular fa-calendar"></i><div class="small">ภาพรวม</div></a>
-    <a href="#days"><i class="fa-solid fa-list"></i><div class="small">ตาราง</div></a>
-    <a href="#tips"><i class="fa-solid fa-circle-info"></i><div class="small">ทิปส์</div></a>
+    <a href="#overview"><i class="fa-regular fa-calendar"></i><div class="small" data-i18n-key="nav_overview">ภาพรวม</div></a>
+    <a href="#days"><i class="fa-solid fa-list"></i><div class="small" data-i18n-key="nav_table">ตาราง</div></a>
+    <a href="#tips"><i class="fa-solid fa-circle-info"></i><div class="small" data-i18n-key="nav_tips">ทิปส์</div></a>
   </nav>
 
   <script>
+    // Helper
     const g = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
-    // ข้อมูลทริป (แปลไทยครบถ้วน) — ปรับโรงแรมวันที่ 11 ธ.ค. เป็น LANDABOUT TOKYO เรียบร้อย
+    // Language state
+    let currentLang = localStorage.getItem('trip_lang') || 'th';
+
+    // Static translations for UI labels (not trip content)
+    const i18n = {
+      title: { th: 'ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว – 3–15 ธ.ค.', en: 'Hong Kong + Japan Winter Trip – Dec 3–15' },
+      header_title: { th: 'ทริปฮ่องกง + ญี่ปุ่นหน้าหนาว', en: 'Hong Kong + Japan Winter Trip' },
+      header_subtitle: { th: '3 – 15 ธ.ค. • โตเกียว ฮาโกเนะ คาวากุจิโกะ คามาคุระ', en: 'Dec 3–15 • Tokyo, Hakone, Kawaguchiko, Kamakura' },
+      tips_button: { th: 'ทิปส์', en: 'Tips' },
+      overview_title: { th: 'ภาพรวมทริป', en: 'Trip Overview' },
+      overview_desc: { th: 'แตะเลือกวันที่เพื่อดูแผนรายชั่วโมง วิธีการเดินทาง ประเภทตั๋ว ค่าโดยสาร แผนที่ และหมายเหตุสำคัญ', en: 'Tap a day to see hourly plans, transport, tickets, fares, maps, and key notes.' },
+      passes_title: { th: 'บัตรโดยสาร & พาสที่ใช้', en: 'Tickets & Passes' },
+      travel_tips: { th: 'ทิปส์การเดินทาง & ฉุกเฉิน', en: 'Travel Tips & Emergency' },
+      essentials_title: { th: 'ของจำเป็น', en: 'Essentials' },
+      emergency_title: { th: 'ฉุกเฉิน', en: 'Emergency' },
+      hk_tips_title: { th: 'ทิปส์ฮ่องกง (เพิ่ม)', en: 'Hong Kong Tips (Extra)' },
+      offline_tip: { th: 'ทิปส์: เพิ่มหน้านี้ไว้ที่หน้าจอหลัก (Share → Add to Home Screen) เพื่อเข้าใช้งานเร็ว ๆ ได้แม้อินเทอร์เน็ตอ่อน', en: 'Tip: Add this page to your home screen (Share → Add to Home Screen) for quick offline access.' },
+      nav_overview: { th: 'ภาพรวม', en: 'Overview' },
+      nav_table: { th: 'ตาราง', en: 'Schedule' },
+      nav_tips: { th: 'ทิปส์', en: 'Tips' }
+    };
+
+    // Passes and Tips lists in two languages
+    const passes = {
+      th: [
+        'ทำ <strong>Suica/PASMO</strong> (ใช้ใน Apple/Google Wallet ได้)',
+        'แนะนำ <strong>Hakone Free Pass (2 วัน)</strong> สำหรับ 8–9 ธ.ค.',
+        'จองที่นั่ง <strong>Odakyu Romancecar</strong> เส้น Shinjuku ⇄ Hakone‑Yumoto',
+        'คาวากุจิโกะ: เลือก <strong>JR + Fujikyu</strong> หรือ <strong>รถบัสด่วน</strong> จาก Shinjuku Expressway Bus Terminal'
+      ],
+      en: [
+        'Get a <strong>Suica/PASMO</strong> (available in Apple/Google Wallet).',
+        '<strong>Hakone Free Pass (2 days)</strong> recommended for Dec 8–9.',
+        'Reserve seats on <strong>Odakyu Romancecar</strong> (Shinjuku ⇄ Hakone‑Yumoto).',
+        'Kawaguchiko: use <strong>JR + Fujikyu</strong> combo or <strong>Highway bus</strong> from Shinjuku Expressway Bus Terminal.'
+      ]
+    };
+
+    const essentials = {
+      th: [
+        'พก <strong>เงินสด</strong> สำหรับร้านเล็ก ๆ (สถานีรถไฟรับบัตรส่วนใหญ่)',
+        'ใช้ <strong>Google Maps</strong> ดูชานชาลาและการเปลี่ยนขบวนแบบเรียลไทม์',
+        'เปิดใช้ <strong>eSIM/ซิม</strong> และบันทึกแผนที่ออฟไลน์',
+        'อากาศ 5–13°C ควรมีเสื้อกันหนาว ถุงร้อน และร่ม'
+      ],
+      en: [
+        'Carry some <strong>cash</strong> for small shops (most stations accept cards).',
+        'Use <strong>Google Maps</strong> for platforms and real-time transfers.',
+        'Activate <strong>eSIM/SIM</strong> and save offline maps.',
+        'Expect 5–13°C: bring a warm jacket, hand warmers, and an umbrella.'
+      ]
+    };
+
+    const emergency = {
+      th: [
+        'โทร <strong>110</strong> (ตำรวจ), <strong>119</strong> (กู้ชีพ/ดับเพลิง)',
+        'สถานเอกอัครราชทูตไทย โตเกียว: +81-3-5789-2433',
+        'ของหายใน JR: ค้นหา "JR East Lost and Found"'
+      ],
+      en: [
+        'Dial <strong>110</strong> (Police), <strong>119</strong> (Ambulance/Fire).',
+        'Royal Thai Embassy, Tokyo: +81-3-5789-2433',
+        'Lost items in JR: search “JR East Lost and Found”.'
+      ]
+    };
+
+    const hkTips = {
+      th: [
+        'จ่ายสะดวกด้วย <strong>Octopus</strong> (เพิ่มลงมือถือได้) และใช้ <strong>MTR Mobile</strong> เช็คเส้นทาง',
+        'ฉุกเฉินฮ่องกง: โทร <strong>999</strong>',
+        'ปลั๊กไฟ Type G (เหมือนสหราชอาณาจักร) — อะแดปเตอร์เผื่อไว้'
+      ],
+      en: [
+        'Use <strong>Octopus</strong> (can add to phone) and <strong>MTR Mobile</strong> for routing.',
+        'Hong Kong emergency: dial <strong>999</strong>.',
+        'Power plug Type G (UK style) — bring an adapter.'
+      ]
+    };
+
+    // Full trip data in two languages.
+    // IMPORTANT: Thai content is preserved verbatim as provided.
     const trip = [
-
-{
-  date: 'พ., 3 ธ.ค.', city:'ฮ่องกง (วันเดินทางถึง)', hotel:{
-    name:'Dorsett Mongkok', maps:g('Dorsett Mongkok')
-  }, temp:'17°–22°C', keyNotes:[
-    'บิน 11:40 → 15:30 กรุงเทพฯ (BKK) → ฮ่องกง (HKG)',
-    'เช็คอิน Dorsett Mongkok',
-    'เน้นพักผ่อน เดินสวนสาธารณะ และกิน'
-  ], schedule:[
-    {time:'08:45', title:'ออกจากบ้าน → สนามบิน', detail:'เผื่อเวลา 2–3 ชม. ก่อนเครื่องออก'},
-    {time:'11:40', title:'บิน BKK → HKG', detail:'ถึงฮ่องกง 15:30 โดยประมาณ'},
-    {time:'15:30', title:'ถึงฮ่องกง', detail:'ตรวจคนเข้าเมือง + รับกระเป๋า ~45–75 นาที'},
-    {time:'17:00', title:'เช็คอิน', detail:'โรงแรม Dorsett Mongkok', map:g('Dorsett Mongkok')},
-    {time:'19:00', title:'ดินเนอร์ชิล ๆ', detail:'ร้านใกล้โรงแรม / ถนน Nathan'},
-  ]
-},
-{
-  date: 'พฤ., 4 ธ.ค.', city:'ฮ่องกง (พักผ่อน)', hotel:{
-    name:'Dorsett Mongkok', maps:g('Dorsett Mongkok')
-  }, temp:'17°–22°C', keyNotes:[
-    'พักผ่อน เดินสวนสาธารณะ และคาเฟ่',
-    'ไม่มีแพลนแน่น เน้นชิล'
-  ], schedule:[
-    {time:'09:00', title:'Kowloon Park', detail:'เดินเล่นรับลม เช้า ๆ สบาย', map:g('Kowloon Park')},
-    {time:'12:30', title:'ติ่มซำ', detail:'เลือกตามสะดวก (เช่น Tim Ho Wan/Makana)'},
-    {time:'15:00', title:'คาเฟ่/พักผ่อน', detail:'ย่าน Mong Kok / Sham Shui Po'},
-    {time:'18:30', title:'ดินเนอร์สบาย ๆ', detail:'ร้านท้องถิ่นหรือซีฟู้ดแบบบ้าน ๆ'}
-  ]
-},
-{
-  date: 'ศ., 5 ธ.ค.', city:'ฮ่องกง (Free Day)', hotel:{
-    name:'Dorsett Mongkok', maps:g('Dorsett Mongkok')
-  }, temp:'17°–22°C', keyNotes:[
-    'วันอิสระ เลือกร้านอาหาร/สวน/ริมน้ำตามชอบ'
-  ], schedule:[
-    {time:'10:00', title:'Mong Kok / Tsim Sha Tsui', detail:'เดินเล่น/ช้อปเบา ๆ'},
-    {time:'13:00', title:'มื้อกลางวัน', detail:'ตามใจ'},
-    {time:'15:30', title:'Victoria Harbour', detail:'เดินชิล Avenue of Stars', map:g('Avenue of Stars Hong Kong')},
-    {time:'19:00', title:'ดินเนอร์วิวอ่าว', detail:'เลือกตามงบและสะดวก'}
-  ]
-},
-
       {
-        date: 'ส., 6 ธ.ค.', city:'โตเกียว (วันเดินทางถึง)', hotel:{
-          name:'GLOU Higashi Shinjuku', maps:g('GLOU Higashi Shinjuku')
-        }, temp:'6°–13°C', keyNotes:[
-          'ถึง นาริตะ 14:25 จากฮ่องกง',
-          'ซื้อบัตร Suica/PASMO หรือใช้ในมือถือ / รับซิมหรือไวไฟพกพา',
-          'เข้าเมือง: Keisei Skyliner → Nippori → JR Yamanote ไป Shinjuku หรือรถบัสสนามบิน'
-        ], schedule:[
-          {time:'09:20', title:'ไฟลท์ HKG → NRT', detail:'คาดถึง 14:25 ตรวจคนเข้าเมือง + รับกระเป๋า ~60–90 นาที'},
-          {time:'15:30', title:'ทำบัตร IC & เข้าเมือง', detail:'เลือก Skyliner / Keisei / รถบัส ตามความสะดวก'},
-          {time:'17:00', title:'เช็คอิน', detail:'โรงแรม GLOU Higashi Shinjuku'},
-          {time:'19:00', title:'ดินเนอร์ – Gyukatsu', detail:'แนะนำ “Gyukatsu Ichi Ni San Shinjuku”', map:g('Gyukatsu Ichi Ni San Shinjuku')},
-          {time:'21:00', title:'เดินเล่นย่านชินจูกุ', detail:'คาบูกิโจ โอโมอิเดะ โยโกโจ'}
+        date: { th: 'พ., 3 ธ.ค.', en: 'Wed, Dec 3' },
+        city: { th: 'ฮ่องกง (วันเดินทางถึง)', en: 'Hong Kong (Arrival Day)' },
+        hotel: { name: 'Dorsett Mongkok', maps: g('Dorsett Mongkok') },
+        temp: { th: '17°–22°C', en: '17°–22°C' },
+        keyNotes: {
+          th: [
+            'บิน 11:40 → 15:30 กรุงเทพฯ (BKK) → ฮ่องกง (HKG)',
+            'เช็คอิน Dorsett Mongkok',
+            'เน้นพักผ่อน เดินสวนสาธารณะ และกิน'
+          ],
+          en: [
+            'Flight 11:40 → 15:30 Bangkok (BKK) → Hong Kong (HKG).',
+            'Check-in at Dorsett Mongkok.',
+            'Relaxing day: parks and food.'
+          ]
+        },
+        schedule: [
+          { time: '08:45', title: { th: 'ออกจากบ้าน → สนามบิน', en: 'Leave home → Airport' }, detail: { th: 'เผื่อเวลา 2–3 ชม. ก่อนเครื่องออก', en: 'Allow 2–3 hours before departure.' } },
+          { time: '11:40', title: { th: 'บิน BKK → HKG', en: 'Fly BKK → HKG' }, detail: { th: 'ถึงฮ่องกง 15:30 โดยประมาณ', en: 'Arrive HKG ~15:30.' } },
+          { time: '15:30', title: { th: 'ถึงฮ่องกง', en: 'Arrive in Hong Kong' }, detail: { th: 'ตรวจคนเข้าเมือง + รับกระเป๋า ~45–75 นาที', en: 'Immigration + baggage ~45–75 mins.' } },
+          { time: '17:00', title: { th: 'เช็คอิน', en: 'Check-in' }, detail: { th: 'โรงแรม Dorsett Mongkok', en: 'Dorsett Mongkok' }, map: g('Dorsett Mongkok') },
+          { time: '19:00', title: { th: 'ดินเนอร์ชิล ๆ', en: 'Chill dinner' }, detail: { th: 'ร้านใกล้โรงแรม / ถนน Nathan', en: 'Near hotel / Nathan Road.' } }
         ]
       },
       {
-        date: 'อา., 7 ธ.ค.', city:'โตเกียว (City Life)', hotel:{ name:'GLOU Higashi Shinjuku', maps:g('GLOU Higashi Shinjuku') }, temp:'6°–12°C', keyNotes:[
-          'เดินเล่นชินจูกุ → อากิฮาบาระ',
-          'มื้ออาหารอิสระ'
-        ], schedule:[
-          {time:'09:30', title:'ชินจูกุ', detail:'ช้อปปิ้ง/เดินเล่น (Donki, ห้างต่าง ๆ)'},
-          {time:'13:00', title:'มื้อกลางวัน', detail:'ตามสะดวก'},
-          {time:'16:30', title:'อากิฮาบาระ', detail:'อิเล็กทรอนิกส์ เกม ตู้คีบ ของอนิเมะ'}
+        date: { th: 'พฤ., 4 ธ.ค.', en: 'Thu, Dec 4' },
+        city: { th: 'ฮ่องกง (พักผ่อน)', en: 'Hong Kong (Easy Day)' },
+        hotel: { name: 'Dorsett Mongkok', maps: g('Dorsett Mongkok') },
+        temp: { th: '17°–22°C', en: '17°–22°C' },
+        keyNotes: {
+          th: ['พักผ่อน เดินสวนสาธารณะ และคาเฟ่', 'ไม่มีแพลนแน่น เน้นชิล'],
+          en: ['Relax with parks and cafés.', 'Flexible plan; take it easy.']
+        },
+        schedule: [
+          { time: '09:00', title: { th: 'Kowloon Park', en: 'Kowloon Park' }, detail: { th: 'เดินเล่นรับลม เช้า ๆ สบาย', en: 'Morning stroll and breeze.' }, map: g('Kowloon Park') },
+          { time: '12:30', title: { th: 'ติ่มซำ', en: 'Dim sum' }, detail: { th: 'เลือกตามสะดวก (เช่น Tim Ho Wan/Makana)', en: 'Pick a spot (e.g., Tim Ho Wan/Makana).' } },
+          { time: '15:00', title: { th: 'คาเฟ่/พักผ่อน', en: 'Café/Rest' }, detail: { th: 'ย่าน Mong Kok / Sham Shui Po', en: 'Mong Kok / Sham Shui Po.' } },
+          { time: '18:30', title: { th: 'ดินเนอร์สบาย ๆ', en: 'Easy dinner' }, detail: { th: 'ร้านท้องถิ่นหรือซีฟู้ดแบบบ้าน ๆ', en: 'Local or simple seafood.' } }
         ]
       },
       {
-        date: 'จ., 8 ธ.ค.', city:'ฮาโกเนะ (ค้างคืน)', hotel:{ name:'Kinnotake Saryo', maps:g('Kinnotake Saryo Hakone') }, temp:'6°–12°C', keyNotes:[
-          'เช็คเอาท์จากโตเกียว มุ่งหน้าไปฮาโกเนะ ซื้อ Hakone Free Pass (2 วัน) หากยังไม่มี',
-          'ขึ้น Odakyu Romancecar จาก Shinjuku → Hakone‑Yumoto (~90 นาที)'
-        ], schedule:[
-          {time:'08:30', title:'เช็คเอาท์/ฝากกระเป๋า', detail:'ฝากกระเป๋าใบใหญ่ที่โรงแรมหรือ Locker สถานี'},
-          {time:'10:00', title:'Shinjuku → Hakone‑Yumoto', detail:'นั่ง Odakyu Romancecar (จองที่นั่ง) หรือรถด่วน + รถท้องถิ่น ใช้ Free Pass ได้'},
-          {time:'12:00', title:'มื้อกลางวัน – ฮาโกเนะ', detail:'ใกล้สถานีหรือระหว่างทาง'},
-          {time:'13:30', title:'Hakone Loop', detail:'กระเช้า Ropeway, เรือโจรสลัดทะเลสาบอาชิ, โอวาคุดานิ'},
-          {time:'17:30', title:'เช็คอินเรียวคังออนเซ็น', detail:'Kinnotake Saryo • มื้อค่ำไคเซกิที่เรียวคัง'}
+        date: { th: 'ศ., 5 ธ.ค.', en: 'Fri, Dec 5' },
+        city: { th: 'ฮ่องกง (Free Day)', en: 'Hong Kong (Free Day)' },
+        hotel: { name: 'Dorsett Mongkok', maps: g('Dorsett Mongkok') },
+        temp: { th: '17°–22°C', en: '17°–22°C' },
+        keyNotes: {
+          th: ['วันอิสระ เลือกร้านอาหาร/สวน/ริมน้ำตามชอบ'],
+          en: ['Free day — choose food/parks/waterfronts you like.']
+        },
+        schedule: [
+          { time: '10:00', title: { th: 'Mong Kok / Tsim Sha Tsui', en: 'Mong Kok / Tsim Sha Tsui' }, detail: { th: 'เดินเล่น/ช้อปเบา ๆ', en: 'Leisure walk / light shopping.' } },
+          { time: '13:00', title: { th: 'มื้อกลางวัน', en: 'Lunch' }, detail: { th: 'ตามใจ', en: 'Your choice.' } },
+          { time: '15:30', title: { th: 'Victoria Harbour', en: 'Victoria Harbour' }, detail: { th: 'เดินชิล Avenue of Stars', en: 'Stroll the Avenue of Stars.' }, map: g('Avenue of Stars Hong Kong') },
+          { time: '19:00', title: { th: 'ดินเนอร์วิวอ่าว', en: 'Harbour-view dinner' }, detail: { th: 'เลือกตามงบและสะดวก', en: 'As budget and convenience allow.' } }
         ]
       },
       {
-        date: 'อ., 9 ธ.ค.', city:'โตเกียว (วันพิพิธภัณฑ์)', hotel:{ name:'Sotetsu Fresa Inn Kanda‑Otemachi', maps:g('Sotetsu Fresa Inn Kanda Otemachi') }, temp:'6°–12°C', keyNotes:[
-          'กลับโตเกียวจาก Hakone‑Yumoto → Shinjuku',
-          'TeamLab Planets / เลือกพิพิธภัณฑ์ในโตเกียว'
-        ], schedule:[
-          {time:'09:00', title:'เช็คเอาท์ → โตเกียว', detail:'Hakone‑Yumoto → Shinjuku (Romancecar) ฝากกระเป๋าที่โรงแรม'},
-          {time:'11:00', title:'พิพิธภัณฑ์โตเกียว', detail:'เลือก 1–2 ที่: Ueno, Edo‑Tokyo, Miraikan'},
-          {time:'15:30', title:'teamLab Planets', detail:'โทยอสึ จองเวลาล่วงหน้า', map:g('teamLab Planets TOKYO')}
+        date: { th: 'ส., 6 ธ.ค.', en: 'Sat, Dec 6' },
+        city: { th: 'โตเกียว (วันเดินทางถึง)', en: 'Tokyo (Arrival Day)' },
+        hotel: { name: 'GLOU Higashi Shinjuku', maps: g('GLOU Higashi Shinjuku') },
+        temp: { th: '6°–13°C', en: '6°–13°C' },
+        keyNotes: {
+          th: [
+            'ถึง นาริตะ 14:25 จากฮ่องกง',
+            'ซื้อบัตร Suica/PASMO หรือใช้ในมือถือ / รับซิมหรือไวไฟพกพา',
+            'เข้าเมือง: Keisei Skyliner → Nippori → JR Yamanote ไป Shinjuku หรือรถบัสสนามบิน'
+          ],
+          en: [
+            'Arrive Narita 14:25 from Hong Kong.',
+            'Get Suica/PASMO (or add to phone); pick up SIM/pocket Wi‑Fi.',
+            'Into city: Keisei Skyliner → Nippori → JR Yamanote to Shinjuku, or Airport Bus.'
+          ]
+        },
+        schedule: [
+          { time: '09:20', title: { th: 'ไฟลท์ HKG → NRT', en: 'Flight HKG → NRT' }, detail: { th: 'คาดถึง 14:25 ตรวจคนเข้าเมือง + รับกระเป๋า ~60–90 นาที', en: 'ETA 14:25; immigration + baggage ~60–90 mins.' } },
+          { time: '15:30', title: { th: 'ทำบัตร IC & เข้าเมือง', en: 'Get IC card & head into city' }, detail: { th: 'เลือก Skyliner / Keisei / รถบัส ตามความสะดวก', en: 'Choose Skyliner/Keisei/bus as you prefer.' } },
+          { time: '17:00', title: { th: 'เช็คอิน', en: 'Check-in' }, detail: { th: 'โรงแรม GLOU Higashi Shinjuku', en: 'GLOU Higashi Shinjuku.' } },
+          { time: '19:00', title: { th: 'ดินเนอร์ – Gyukatsu', en: 'Dinner – Gyukatsu' }, detail: { th: 'แนะนำ “Gyukatsu Ichi Ni San Shinjuku”', en: 'Try “Gyukatsu Ichi Ni San Shinjuku”.' }, map: g('Gyukatsu Ichi Ni San Shinjuku') },
+          { time: '21:00', title: { th: 'เดินเล่นย่านชินจูกุ', en: 'Stroll around Shinjuku' }, detail: { th: 'คาบูกิโจ โอโมอิเดะ โยโกโจ', en: 'Kabukicho, Omoide Yokocho.' } }
         ]
       },
       {
-        date: 'พ., 10 ธ.ค.', city:'คาวากุจิโกะ (ค้างคืน)', hotel:{ name:'Hotel Asafuji', maps:g('Hotel Asafuji Kawaguchiko') }, temp:'5°–12°C', keyNotes:[
-          'เช็คเอาท์มุ่งหน้าคาวากุจิโกะ ชมฟูจิ',
-          'เดินทาง: Shinjuku → Otsuki (JR Limited Express) → Kawaguchiko (Fujikyu) หรือรถบัสด่วน ~1ชม.45น.'
-        ], schedule:[
-          {time:'08:30', title:'ออกจากโตเกียว', detail:'จอง JR Limited Express “Kaiji/Azusa” ถึง Otsuki → Fujikyu ไป Kawaguchiko'},
-          {time:'11:00', title:'เช็คอิน/ฝากกระเป๋า', detail:'Hotel Asafuji (ริมห้วยสาบ)'},
-          {time:'12:30', title:'ทะเลสาบคาวากุจิ', detail:'กระเช้าภูเขา/จุดชมวิว/ออนเซ็น'},
-          {time:'18:30', title:'ดินเนอร์ – ท้องถิ่น', detail:'ทานที่โรงแรมหรืออิซากายะใกล้ ๆ'}
+        date: { th: 'อา., 7 ธ.ค.', en: 'Sun, Dec 7' },
+        city: { th: 'โตเกียว (City Life)', en: 'Tokyo (City Life)' },
+        hotel: { name: 'GLOU Higashi Shinjuku', maps: g('GLOU Higashi Shinjuku') },
+        temp: { th: '6°–12°C', en: '6°–12°C' },
+        keyNotes: {
+          th: ['เดินเล่นชินจูกุ → อากิฮาบาระ', 'มื้ออาหารอิสระ'],
+          en: ['Explore Shinjuku → Akihabara.', 'Meals at your choice.']
+        },
+        schedule: [
+          { time: '09:30', title: { th: 'ชินจูกุ', en: 'Shinjuku' }, detail: { th: 'ช้อปปิ้ง/เดินเล่น (Donki, ห้างต่าง ๆ)', en: 'Shopping/walk (Donki, malls).' } },
+          { time: '13:00', title: { th: 'มื้อกลางวัน', en: 'Lunch' }, detail: { th: 'ตามสะดวก', en: 'As you like.' } },
+          { time: '16:30', title: { th: 'อากิฮาบาระ', en: 'Akihabara' }, detail: { th: 'อิเล็กทรอนิกส์ เกม ตู้คีบ ของอนิเมะ', en: 'Electronics, games, anime goods.' } }
         ]
       },
       {
-        date: 'พฤ., 11 ธ.ค.', city:'คามาคุระ (ไปเช้าเย็นกลับ)', hotel:{ name:'LANDABOUT TOKYO', maps:g('LANDABOUT TOKYO') }, temp:'5°–12°C', keyNotes:[
-          'จากชินจูกุไปคามาคุระ ด้วย JR Shōnan‑Shinjuku Line (ตรง ~1 ชม.)',
-          'ไฮไลต์: พระใหญ่ โคโตคุอิน, วัด Hase‑dera, ถนนโคมาจิ, จุดถ่ายรูป Slam Dunk ที่ Kamakurakōkō‑mae'
-        ], schedule:[
-          {time:'08:30', title:'นั่งรถไฟไปคามาคุระ', detail:'JR Shōnan‑Shinjuku Line จาก Shinjuku → Kamakura'},
-          {time:'10:00', title:'โคโตคุอิน (พระใหญ่)', detail:'เดินหรือขึ้น Enoden ไป Hase', map:g('Kotoku-in Great Buddha Kamakura')},
-          {time:'12:30', title:'มื้อกลางวัน – คามาคุระ', detail:'แนะนำข้าวหน้าชิราสึ'},
-          {time:'14:00', title:'จุดตัด Slam Dunk', detail:'สถานี Kamakurakōkō‑mae', map:g('Kamakurakoko-mae Station')},
-          {time:'17:00', title:'กลับโตเกียว', detail:'JR กลับมาย่านชินจูกุ/คันดะ'}
+        date: { th: 'จ., 8 ธ.ค.', en: 'Mon, Dec 8' },
+        city: { th: 'ฮาโกเนะ (ค้างคืน)', en: 'Hakone (Overnight)' },
+        hotel: { name: 'Kinnotake Saryo', maps: g('Kinnotake Saryo Hakone') },
+        temp: { th: '6°–12°C', en: '6°–12°C' },
+        keyNotes: {
+          th: [
+            'เช็คเอาท์จากโตเกียว มุ่งหน้าไปฮาโกเนะ ซื้อ Hakone Free Pass (2 วัน) หากยังไม่มี',
+            'ขึ้น Odakyu Romancecar จาก Shinjuku → Hakone‑Yumoto (~90 นาที)'
+          ],
+          en: [
+            'Check out Tokyo → Hakone; buy Hakone Free Pass (2 days) if needed.',
+            'Take Odakyu Romancecar Shinjuku → Hakone‑Yumoto (~90 mins).'
+          ]
+        },
+        schedule: [
+          { time: '08:30', title: { th: 'เช็คเอาท์/ฝากกระเป๋า', en: 'Check out / drop luggage' }, detail: { th: 'ฝากกระเป๋าใบใหญ่ที่โรงแรมหรือ Locker สถานี', en: 'Leave big bags at hotel or station lockers.' } },
+          { time: '10:00', title: { th: 'Shinjuku → Hakone‑Yumoto', en: 'Shinjuku → Hakone‑Yumoto' }, detail: { th: 'นั่ง Odakyu Romancecar (จองที่นั่ง) หรือรถด่วน + รถท้องถิ่น ใช้ Free Pass ได้', en: 'Romancecar (reserved) or express + local; Free Pass applies.' } },
+          { time: '12:00', title: { th: 'มื้อกลางวัน – ฮาโกเนะ', en: 'Lunch – Hakone' }, detail: { th: 'ใกล้สถานีหรือระหว่างทาง', en: 'Near station / en route.' } },
+          { time: '13:30', title: { th: 'Hakone Loop', en: 'Hakone Loop' }, detail: { th: 'กระเช้า Ropeway, เรือโจรสลัดทะเลสาบอาชิ, โอวาคุดานิ', en: 'Ropeway, pirate ship on Lake Ashi, Owakudani.' } },
+          { time: '17:30', title: { th: 'เช็คอินเรียวคังออนเซ็น', en: 'Check-in ryokan (onsen)' }, detail: { th: 'Kinnotake Saryo • มื้อค่ำไคเซกิที่เรียวคัง', en: 'Kinnotake Saryo • Kaiseki dinner at ryokan.' } }
         ]
       },
       {
-        date: 'ศ., 12 ธ.ค.', city:'โตเกียว (DisneySea)', hotel:{ name:'LANDABOUT TOKYO', maps:g('LANDABOUT TOKYO') }, temp:'5°–12°C', keyNotes:[
-          'ย้ายไปพัก LANDABOUT TOKYO (Uguisudani)',
-          'ไป DisneySea: JR ไป Maihama → Disney Resort Line → DisneySea'
-        ], schedule:[
-          {time:'09:00', title:'ย้ายโรงแรม', detail:'เช็คเอาท์ ฝากกระเป๋าที่ LANDABOUT'},
-          {time:'10:30', title:'DisneySea', detail:'JR Keiyo Line ไป Maihama → Resort Line ไป DisneySea ใช้แอปเช็คคิว'},
-          {time:'19:00', title:'ดินเนอร์ใกล้สวนสนุก', detail:'อยู่ชมโชว์กลางคืนได้'}
+        date: { th: 'อ., 9 ธ.ค.', en: 'Tue, Dec 9' },
+        city: { th: 'โตเกียว (วันพิพิธภัณฑ์)', en: 'Tokyo (Museum Day)' },
+        hotel: { name: 'Sotetsu Fresa Inn Kanda‑Otemachi', maps: g('Sotetsu Fresa Inn Kanda Otemachi') },
+        temp: { th: '6°–12°C', en: '6°–12°C' },
+        keyNotes: {
+          th: ['กลับโตเกียวจาก Hakone‑Yumoto → Shinjuku', 'TeamLab Planets / เลือกพิพิธภัณฑ์ในโตเกียว'],
+          en: ['Return to Tokyo: Hakone‑Yumoto → Shinjuku.', 'teamLab Planets / pick 1–2 museums in Tokyo.']
+        },
+        schedule: [
+          { time: '09:00', title: { th: 'เช็คเอาท์ → โตเกียว', en: 'Check out → Tokyo' }, detail: { th: 'Hakone‑Yumoto → Shinjuku (Romancecar) ฝากกระเป๋าที่โรงแรม', en: 'Hakone‑Yumoto → Shinjuku (Romancecar); drop bags at hotel.' } },
+          { time: '11:00', title: { th: 'พิพิธภัณฑ์โตเกียว', en: 'Tokyo museums' }, detail: { th: 'เลือก 1–2 ที่: Ueno, Edo‑Tokyo, Miraikan', en: 'Pick 1–2: Ueno, Edo‑Tokyo, Miraikan.' } },
+          { time: '15:30', title: { th: 'teamLab Planets', en: 'teamLab Planets' }, detail: { th: 'โทยอสึ จองเวลาล่วงหน้า', en: 'Toyosu; book a time slot.' }, map: g('teamLab Planets TOKYO') }
         ]
       },
       {
-        date: 'ส., 13 ธ.ค.', city:'โตเกียว (Harry Potter Day)', hotel:{ name:'LANDABOUT TOKYO', maps:g('LANDABOUT TOKYO') }, temp:'5°–12°C', keyNotes:[
-          'Warner Bros. Studio Tour Tokyo – The Making of Harry Potter (Toshimaen)',
-          'การเดินทาง: Toei Oedo Line หรือ Seibu Line ลงสถานี Toshimaen เดิน 5 นาที'
-        ], schedule:[
-          {time:'11:00', title:'Studio Tour Tokyo', detail:'จองบัตรกำหนดเวลา ถึงก่อนอย่างน้อย 30 นาที', map:g('Warner Bros. Studio Tour Tokyo')},
-          {time:'15:30', title:'อิสระ', detail:'Nakano Broadway / Ikebukuro'}
+        date: { th: 'พ., 10 ธ.ค.', en: 'Wed, Dec 10' },
+        city: { th: 'คาวากุจิโกะ (ค้างคืน)', en: 'Kawaguchiko (Overnight)' },
+        hotel: { name: 'Hotel Asafuji', maps: g('Hotel Asafuji Kawaguchiko') },
+        temp: { th: '5°–12°C', en: '5°–12°C' },
+        keyNotes: {
+          th: [
+            'เช็คเอาท์มุ่งหน้าคาวากุจิโกะ ชมฟูจิ',
+            'เดินทาง: Shinjuku → Otsuki (JR Limited Express) → Kawaguchiko (Fujikyu) หรือรถบัสด่วน ~1ชม.45น.'
+          ],
+          en: [
+            'Head to Kawaguchiko for Mt. Fuji views.',
+            'Route: Shinjuku → Otsuki (JR Ltd. Exp.) → Kawaguchiko (Fujikyu), or highway bus ~1h45m.'
+          ]
+        },
+        schedule: [
+          { time: '08:30', title: { th: 'ออกจากโตเกียว', en: 'Leave Tokyo' }, detail: { th: 'จอง JR Limited Express “Kaiji/Azusa” ถึง Otsuki → Fujikyu ไป Kawaguchiko', en: 'Reserve JR “Kaiji/Azusa” to Otsuki → Fujikyu to Kawaguchiko.' } },
+          { time: '11:00', title: { th: 'เช็คอิน/ฝากกระเป๋า', en: 'Check-in/drop bags' }, detail: { th: 'Hotel Asafuji (ริมห้วยสาบ)', en: 'Hotel Asafuji (lakefront).' } },
+          { time: '12:30', title: { th: 'ทะเลสาบคาวากุจิ', en: 'Lake Kawaguchi' }, detail: { th: 'กระเช้าภูเขา/จุดชมวิว/ออนเซ็น', en: 'Ropeway/viewpoints/onsen.' } },
+          { time: '18:30', title: { th: 'ดินเนอร์ – ท้องถิ่น', en: 'Dinner – Local' }, detail: { th: 'ทานที่โรงแรมหรืออิซากายะใกล้ ๆ', en: 'At hotel or nearby izakaya.' } }
         ]
       },
       {
-        date: 'อา., 14 ธ.ค.', city:'โตเกียว (Free Day)', hotel:{ name:'LANDABOUT TOKYO', maps:g('LANDABOUT TOKYO') }, temp:'5°–11°C', keyNotes:[
-          'เที่ยวตามใจ: Skytree, Art Aquarium, ทัวร์พิพิธภัณฑ์, Tokyo Tower'
-        ], schedule:[
-          {time:'10:00', title:'Tokyo Skytree', detail:'โซนอะสะกุสะ/สกายทรี', map:g('Tokyo Skytree')},
-          {time:'13:00', title:'Art Aquarium (Nihonbashi)', detail:'ซื้อตั๋วออนไลน์ถ้าช่วงพีค', map:g('Art Aquarium Museum Nihonbashi')},
-          {time:'16:00', title:'Tokyo Tower', detail:'วิวเย็นสวย', map:g('Tokyo Tower')},
-          {time:'19:00', title:'เก็บกระเป๋า', detail:'เตรียมบินวันถัดไป'}
+        date: { th: 'พฤ., 11 ธ.ค.', en: 'Thu, Dec 11' },
+        city: { th: 'คามาคุระ (ไปเช้าเย็นกลับ)', en: 'Kamakura (Day Trip)' },
+        hotel: { name: 'LANDABOUT TOKYO', maps: g('LANDABOUT TOKYO') },
+        temp: { th: '5°–12°C', en: '5°–12°C' },
+        keyNotes: {
+          th: [
+            'จากชินจูกุไปคามาคุระ ด้วย JR Shōnan‑Shinjuku Line (ตรง ~1 ชม.)',
+            'ไฮไลต์: พระใหญ่ โคโตคุอิน, วัด Hase‑dera, ถนนโคมาจิ, จุดถ่ายรูป Slam Dunk ที่ Kamakurakōkō‑mae'
+          ],
+          en: [
+            'From Shinjuku to Kamakura via JR Shōnan‑Shinjuku Line (direct ~1 hr).',
+            'Highlights: Great Buddha (Kotoku‑in), Hase‑dera, Komachi‑dori, Slam Dunk spot at Kamakurakōkō‑mae.'
+          ]
+        },
+        schedule: [
+          { time: '08:30', title: { th: 'นั่งรถไฟไปคามาคุระ', en: 'Train to Kamakura' }, detail: { th: 'JR Shōnan‑Shinjuku Line จาก Shinjuku → Kamakura', en: 'JR Shōnan‑Shinjuku Line Shinjuku → Kamakura.' } },
+          { time: '10:00', title: { th: 'โคโตคุอิน (พระใหญ่)', en: 'Kotoku‑in (Great Buddha)' }, detail: { th: 'เดินหรือขึ้น Enoden ไป Hase', en: 'Walk or take Enoden to Hase.' }, map: g('Kotoku-in Great Buddha Kamakura') },
+          { time: '12:30', title: { th: 'มื้อกลางวัน – คามาคุระ', en: 'Lunch – Kamakura' }, detail: { th: 'แนะนำข้าวหน้าชิราสึ', en: 'Try shirasu-don.' } },
+          { time: '14:00', title: { th: 'จุดตัด Slam Dunk', en: 'Slam Dunk crossing' }, detail: { th: 'สถานี Kamakurakōkō‑mae', en: 'Kamakurakōkō‑mae Station.' }, map: g('Kamakurakoko-mae Station') },
+          { time: '17:00', title: { th: 'กลับโตเกียว', en: 'Return to Tokyo' }, detail: { th: 'JR กลับมาย่านชินจูกุ/คันดะ', en: 'JR back to Shinjuku/Kanda.' } }
         ]
       },
       {
-        date: 'จ., 15 ธ.ค.', city:'เดินทางกลับ', hotel:{ name:'—', maps:'#' }, temp:'5°–9°C', keyNotes:[
-          'เช็คเอาท์และเดินทางไปสนามบินนาริตะ',
-          'ไฟลท์ 12:10 NRT → 17:40 DMK'
-        ], schedule:[
-          {time:'08:00', title:'เช็คเอาท์', detail:'ไปสนามบินด้วย Keisei Skyliner หรือ JR Narita Express'},
-          {time:'09:30', title:'ถึงสนามบิน', detail:'เช็คอินและตรวจความปลอดภัย'},
-          {time:'12:10', title:'ออกเดินทาง NRT → DMK', detail:'ถึงกรุงเทพฯ 17:40 โดยประมาณ'}
+        date: { th: 'ศ., 12 ธ.ค.', en: 'Fri, Dec 12' },
+        city: { th: 'โตเกียว (DisneySea)', en: 'Tokyo (DisneySea)' },
+        hotel: { name: 'LANDABOUT TOKYO', maps: g('LANDABOUT TOKYO') },
+        temp: { th: '5°–12°C', en: '5°–12°C' },
+        keyNotes: {
+          th: [
+            'ย้ายไปพัก LANDABOUT TOKYO (Uguisudani)',
+            'ไป DisneySea: JR ไป Maihama → Disney Resort Line → DisneySea'
+          ],
+          en: [
+            'Move to LANDABOUT TOKYO (Uguisudani).',
+            'To DisneySea: JR to Maihama → Disney Resort Line → DisneySea.'
+          ]
+        },
+        schedule: [
+          { time: '09:00', title: { th: 'ย้ายโรงแรม', en: 'Change hotel' }, detail: { th: 'เช็คเอาท์ ฝากกระเป๋าที่ LANDABOUT', en: 'Check out; store bags at LANDABOUT.' } },
+          { time: '10:30', title: { th: 'DisneySea', en: 'DisneySea' }, detail: { th: 'JR Keiyo Line ไป Maihama → Resort Line ไป DisneySea ใช้แอปเช็คคิว', en: 'JR Keiyo Line to Maihama → Resort Line to DisneySea; use app for queues.' } },
+          { time: '19:00', title: { th: 'ดินเนอร์ใกล้สวนสนุก', en: 'Dinner near the park' }, detail: { th: 'อยู่ชมโชว์กลางคืนได้', en: 'Stay for night shows if you like.' } }
+        ]
+      },
+      {
+        date: { th: 'ส., 13 ธ.ค.', en: 'Sat, Dec 13' },
+        city: { th: 'โตเกียว (Harry Potter Day)', en: 'Tokyo (Harry Potter Day)' },
+        hotel: { name: 'LANDABOUT TOKYO', maps: g('LANDABOUT TOKYO') },
+        temp: { th: '5°–12°C', en: '5°–12°C' },
+        keyNotes: {
+          th: [
+            'Warner Bros. Studio Tour Tokyo – The Making of Harry Potter (Toshimaen)',
+            'การเดินทาง: Toei Oedo Line หรือ Seibu Line ลงสถานี Toshimaen เดิน 5 นาที'
+          ],
+          en: [
+            'Warner Bros. Studio Tour Tokyo – The Making of Harry Potter (Toshimaen).',
+            'Access: Toei Oedo Line or Seibu Line to Toshimaen; 5‑min walk.'
+          ]
+        },
+        schedule: [
+          { time: '11:00', title: { th: 'Studio Tour Tokyo', en: 'Studio Tour Tokyo' }, detail: { th: 'จองบัตรกำหนดเวลา ถึงก่อนอย่างน้อย 30 นาที', en: 'Timed tickets; arrive at least 30 mins early.' }, map: g('Warner Bros. Studio Tour Tokyo') },
+          { time: '15:30', title: { th: 'อิสระ', en: 'Free time' }, detail: { th: 'Nakano Broadway / Ikebukuro', en: 'Nakano Broadway / Ikebukuro.' } }
+        ]
+      },
+      {
+        date: { th: 'อา., 14 ธ.ค.', en: 'Sun, Dec 14' },
+        city: { th: 'โตเกียว (Free Day)', en: 'Tokyo (Free Day)' },
+        hotel: { name: 'LANDABOUT TOKYO', maps: g('LANDABOUT TOKYO') },
+        temp: { th: '5°–11°C', en: '5°–11°C' },
+        keyNotes: {
+          th: ['เที่ยวตามใจ: Skytree, Art Aquarium, ทัวร์พิพิธภัณฑ์, Tokyo Tower'],
+          en: ['Choose your spots: Skytree, Art Aquarium, museums, Tokyo Tower.']
+        },
+        schedule: [
+          { time: '10:00', title: { th: 'Tokyo Skytree', en: 'Tokyo Skytree' }, detail: { th: 'โซนอะสะกุสะ/สกายทรี', en: 'Asakusa/Skytree area.' }, map: g('Tokyo Skytree') },
+          { time: '13:00', title: { th: 'Art Aquarium (Nihonbashi)', en: 'Art Aquarium (Nihonbashi)' }, detail: { th: 'ซื้อตั๋วออนไลน์ถ้าช่วงพีค', en: 'Book online if peak time.' }, map: g('Art Aquarium Museum Nihonbashi') },
+          { time: '16:00', title: { th: 'Tokyo Tower', en: 'Tokyo Tower' }, detail: { th: 'วิวเย็นสวย', en: 'Great evening view.' }, map: g('Tokyo Tower') },
+          { time: '19:00', title: { th: 'เก็บกระเป๋า', en: 'Pack bags' }, detail: { th: 'เตรียมบินวันถัดไป', en: 'Prepare for flight tomorrow.' } }
+        ]
+      },
+      {
+        date: { th: 'จ., 15 ธ.ค.', en: 'Mon, Dec 15' },
+        city: { th: 'เดินทางกลับ', en: 'Fly Home' },
+        hotel: { name: '—', maps: '#' },
+        temp: { th: '5°–9°C', en: '5°–9°C' },
+        keyNotes: {
+          th: ['เช็คเอาท์และเดินทางไปสนามบินนาริตะ', 'ไฟลท์ 12:10 NRT → 17:40 DMK'],
+          en: ['Check out and head to Narita Airport.', 'Flight 12:10 NRT → 17:40 DMK.']
+        },
+        schedule: [
+          { time: '08:00', title: { th: 'เช็คเอาท์', en: 'Check out' }, detail: { th: 'ไปสนามบินด้วย Keisei Skyliner หรือ JR Narita Express', en: 'To airport: Keisei Skyliner or JR Narita Express.' } },
+          { time: '09:30', title: { th: 'ถึงสนามบิน', en: 'Arrive at airport' }, detail: { th: 'เช็คอินและตรวจความปลอดภัย', en: 'Check-in and security.' } },
+          { time: '12:10', title: { th: 'ออกเดินทาง NRT → DMK', en: 'Depart NRT → DMK' }, detail: { th: 'ถึงกรุงเทพฯ 17:40 โดยประมาณ', en: 'Arrive Bangkok ~17:40.' } }
         ]
       }
     ];
 
-    // ปุ่มลัดไปแต่ละวัน
+    // Render
     const pills = document.getElementById('dayPills');
-    trip.forEach((d, idx)=>{
-      const a = document.createElement('a');
-      a.className='btn btn-sm btn-outline-primary';
-      a.href = `#day-${idx}`;
-      a.textContent = `${idx+1}. ${d.date}`;
-      pills.appendChild(a);
-    });
-
-    // แสดงผลแต่ละวัน
     const days = document.getElementById('days');
-    trip.forEach((d, idx)=>{
-      const el = document.createElement('section');
-      el.className = 'my-3 scroll-area';
-      el.id = `day-${idx}`;
-      el.innerHTML = `
-        <div class=\"card day-card\"> 
-          <div class=\"card-body\">
-            <div class=\"d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2\">
-              <div>
-                <h3 class=\"h5 mb-1\">${d.date} · ${d.city}</h3>
-                <div class=\"small text-secondary\"><span class=\"badge rounded-pill badge-temp me-2\"><i class=\\"fa-solid fa-temperature-three-quarters me-1\\"></i>${d.temp}</span> โรงแรม: <a class=\"gmaps-link\" href=\"${d.hotel.maps}\" target=\"_blank\" rel=\"noopener\">${d.hotel.name}</a></div>
+    const passesList = document.getElementById('passes_list');
+    const essentialsList = document.getElementById('essentials_list');
+    const emergencyList = document.getElementById('emergency_list');
+    const hkTipsList = document.getElementById('hk_tips_list');
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('trip_lang', lang);
+      renderAll();
+      // Update toggle button styles
+      document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      // Set html lang attribute
+      document.documentElement.setAttribute('lang', lang === 'th' ? 'th' : 'en');
+    }
+
+    function renderAll() {
+      // Static labels
+      document.querySelectorAll('[data-i18n-key]').forEach(el => {
+        const key = el.getAttribute('data-i18n-key');
+        if (i18n[key]) el.innerHTML = i18n[key][currentLang];
+      });
+
+      // Passes & tips lists
+      passesList.innerHTML = (passes[currentLang] || []).map(li => `<li>${li}</li>`).join('');
+      essentialsList.innerHTML = (essentials[currentLang] || []).map(li => `<li>${li}</li>`).join('');
+      emergencyList.innerHTML = (emergency[currentLang] || []).map(li => `<li>${li}</li>`).join('');
+      hkTipsList.innerHTML = (hkTips[currentLang] || []).map(li => `<li>${li}</li>`).join('');
+
+      // Pills
+      pills.innerHTML = '';
+      trip.forEach((d, idx) => {
+        const a = document.createElement('a');
+        a.className = 'btn btn-sm btn-outline-primary';
+        a.href = `#day-${idx}`;
+        a.textContent = `${idx+1}. ${d.date[currentLang]}`;
+        pills.appendChild(a);
+      });
+
+      // Days
+      days.innerHTML = '';
+      trip.forEach((d, idx) => {
+        const el = document.createElement('section');
+        el.className = 'my-3 scroll-area';
+        el.id = `day-${idx}`;
+        el.innerHTML = `
+          <div class="card day-card"> 
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                <div>
+                  <h3 class="h5 mb-1">${d.date[currentLang]} · ${d.city[currentLang]}</h3>
+                  <div class="small text-secondary"><span class="badge rounded-pill badge-temp me-2"><i class="fa-solid fa-temperature-three-quarters me-1"></i>${d.temp[currentLang]}</span> 
+                    <span>${currentLang==='th'?'โรงแรม:':'Hotel:'}</span> 
+                    <a class="gmaps-link" href="${d.hotel.maps}" target="_blank" rel="noopener">${d.hotel.name}</a></div>
+                </div>
+                <a class="btn btn-sm btn-outline-secondary" href="#overview"><i class="fa-regular fa-calendar me-1"></i>${currentLang==='th'?'ดูทั้งหมด':'All days'}</a>
               </div>
-              <a class=\"btn btn-sm btn-outline-secondary\" href=\"#overview\"><i class=\"fa-regular fa-calendar me-1\"></i>ดูทั้งหมด</a>
-            </div>
 
-            <div class=\"mb-3\">
-              <div class=\"section-title mb-1\"><i class=\"fa-solid fa-route me-2\"></i>หมายเหตุสำคัญ</div>
-              <ul class=\"small ps-3 mb-0\">${d.keyNotes.map(t=>`<li>${t}</li>`).join('')}</ul>
-            </div>
+              <div class="mb-3">
+                <div class="section-title mb-1"><i class="fa-solid fa-route me-2"></i>${currentLang==='th'?'หมายเหตุสำคัญ':'Key Notes'}</div>
+                <ul class="small ps-3 mb-0">${(d.keyNotes[currentLang]||[]).map(t=>`<li>${t}</li>`).join('')}</ul>
+              </div>
 
-            <div class=\"section-title mb-2\"><i class=\"fa-regular fa-clock me-2\"></i>ตารางเวลา</div>
-            <div class=\"table-responsive\">
-              <table class=\"table table-sm align-middle mb-0\">
-                <tbody>
-                  ${d.schedule.map(item=>`
-                    <tr>
-                      <td class=\"time-col text-secondary small\">${item.time}</td>
-                      <td>
-                        <div class=\"fw-semibold\"><span class=\"timeline-dot\"></span>${item.title}</div>
-                        <div class=\"small text-secondary\">${item.detail}</div>
-                        ${item.map?`<a class=\\"gmaps-link small\\" href=\\"${item.map}\\" target=\\"_blank\\" rel=\\"noopener\\"><i class=\\\\"fa-solid fa-map-location-dot me-1\\\\"></i>เปิดในแผนที่</a>`:''}
-                      </td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
+              <div class="section-title mb-2"><i class="fa-regular fa-clock me-2"></i>${currentLang==='th'?'ตารางเวลา':'Schedule'}</div>
+              <div class="table-responsive">
+                <table class="table table-sm align-middle mb-0">
+                  <tbody>
+                    ${d.schedule.map(item=>`
+                      <tr>
+                        <td class="time-col text-secondary small">${item.time}</td>
+                        <td>
+                          <div class="fw-semibold"><span class="timeline-dot"></span>${item.title[currentLang]}</div>
+                          <div class="small text-secondary">${item.detail[currentLang]}</div>
+                          ${item.map?`<a class="gmaps-link small" href="${item.map}" target="_blank" rel="noopener"><i class="fa-solid fa-map-location-dot me-1"></i>${currentLang==='th'?'เปิดในแผนที่':'Open in Maps'}</a>`:''}
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      `;
-      days.appendChild(el);
+        `;
+        days.appendChild(el);
+      });
+    }
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      setLang(currentLang);
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
